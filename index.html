@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+    <body id="body">
+        <h id="initmsg"><b>Not</b> ready when you are.</h>
+        <input onkeydown="gen()" type="text" placeholder="Talk to me, now." id="promptbar"/>
+        <p style="font-family: system-ui; text-align: center; color: rgb(100, 100, 100); font-size: 13px;">ClosedPI© 2027 | THIS IS NOT A REAL AI CHATBOT.</p>
+    </body>
+    <style>
+        body {
+            padding: 100px;
+            padding-top: 340px;
+            display: grid;
+            justify-content:center;
+            background: rgb(49, 49, 49);
+        }
+        input {
+            font-family: system-ui;
+            padding: 10px;
+            border-radius: 16px;
+            border-width: 1px;
+            margin-top: 20px;
+            height: 50px;
+            color: white;
+            width: 600px;
+            border-style: solid;
+            background-color: rgb(71, 71, 71);
+            border-color: rgb(95, 95, 95);
+        }
+        h {
+            color: white;
+            text-align: center;
+            font-family: system-ui;
+        }
+        .rebtext {
+            color: rgb(255, 110, 110);
+        }
+        .normaltext {
+            color: rgb(221, 221, 221);
+        }
+        .geentext {
+            color: rgb(140, 255, 117);
+        }
+        .blutext {
+            color: rgb(105, 108, 255);
+        }
+    </style>
+    <script>
+        const initmsg = document.getElementById("initmsg")
+        const inputbar = document.getElementById("promptbar")
+        const possibility = [
+        "hello",
+        "how",
+        "are",
+        "you",
+        "me",
+        "that",
+        "this",
+        "he",
+        "him",
+        "she",
+        "her",
+        "they",
+        "them",
+        "ze",
+        "zem",
+        "zir",
+        "gender",
+        "common",
+        "dictionary",
+        "true",
+        "false",
+        "robot",
+        "ai",
+        "sick",
+        "cool",
+        "tricks",
+        "trick",
+        "grammar",
+        "learn",
+        "sentence",
+        "amazing",
+        "nice",
+        "then",
+        "has",
+        "your",
+        "list",
+        "bug",
+        "bot",
+        "chat",
+        "message",
+        "response",
+        "possible",
+        "depression",
+        "good",
+        "boom",
+        "lol",
+        "senior",
+        "grandpa",
+        "grandma",
+        "parent",
+        "child",
+        "father",
+        "mother",
+        "nonbinary",
+        "prosper",
+        "mutation",
+        "inspiration",
+        "misery",
+        "haircut",
+        "house",
+        "eject",
+        "design",
+        "subject",
+        "voyage",
+        "reference",
+        "manage",
+        "interference",
+        "quantity",
+        "conflict",
+        "sample",
+        "invisible",
+        "century",
+        "fluctuation",
+        "control",
+        "judge",
+        "qualification",
+        "canvas",
+        "restaurant",
+        "persist",
+        "glance",
+        "hour",
+        "attract",
+        "revive",
+        "resolution",
+        "push",
+        "rainbow",
+        "costume",
+        "excavate",
+        "disorder",
+        "ignorance",
+        "aid",
+        "interrupt",
+        "opposed",
+        "ladder",
+        "table",
+        "joystick",
+        "nominate",
+        "seed",
+        "specimen",
+        "well",
+        "sign",
+        "reward",
+        "training"
+        ];
+        const codepossibility = [
+            "local",
+            "global",
+            "true",
+            "false",
+            "const",
+            "",
+            "python",
+            "_G",
+            "_VERSION",
+            "def",
+            "True",
+            "False",
+            "java",
+            "string",
+            "public",
+            "static",
+            "void",
+            "main",
+            "import",
+            "export",
+            "require",
+            "#include",
+            "#export",
+            "<>",
+            "<html>",
+            "</html>",
+            "<p>",
+            "</p>",
+            "=",
+            "if",
+            "(",
+            ")",
+            "[",
+            "]",
+            "{",
+            "}",
+            ".",
+            ";",
+            "-",
+            "+",
+            "*",
+            "@",
+            "$",
+            "%",
+            "/",
+        ];
+        const body = document.getElementById("body")
+        function capflt(val) {
+            return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+        };
+
+        function response(){
+            const wordmount = Math.floor(Math.random() * 10);
+            let sentencef = []
+            for (let i = 0; i < wordmount; i++) {
+                const numbword = Math.floor(Math.random()*possibility.length);
+                const pickedword = possibility[numbword];
+                sentencef.push(pickedword);
+            }
+            let firstword = sentencef[0];
+            firstword = capflt(firstword);
+            sentencef[0] = firstword;
+            return sentencef.join(" ");
+        };
+        function ranint(max) {
+            return Math.floor(Math.random() * max);
+        }
+        async function writebit(ele, sent){
+            for (let i = 0; i <= sent.length; i++) {
+                const charat = sent.charAt(i);
+                ele.textContent = ele.textContent.concat(charat);
+                await new Promise(resolve => setTimeout(resolve, 20));;
+            }
+        };     
+        async function writebitspans(ele, sent, tabele){
+            for (let i = 0; i <= sent.length; i++) {
+                const charat = sent.split(" ")[i]
+                if (charat === undefined) {
+                    return;
+                }
+                let highlightclassname = "normaltext"
+                const newspan = document.createElement("span")
+                newspan.style.fontFamily = "system-ui"
+                let mark = false
+                for (var construct of tabele) {
+                    construct.txts.forEach(element => {
+                        if (charat === element) {
+                            highlightclassname = construct.classname
+                        }
+                    });
+                }
+                newspan.classList.add(highlightclassname)
+                newspan.textContent = " "+charat+" "
+                ele.appendChild(newspan)
+                await new Promise(resolve => setTimeout(resolve, 20));;
+            }
+        };      
+        function codegen(ele){
+            const wordmount = Math.floor(Math.random() * 300);
+            let sentencef = [];
+            for (let i = 0; i < wordmount; i++) {
+                const numbword = Math.floor(Math.random()*codepossibility.length);
+                const pickedword = codepossibility[numbword];
+                sentencef.push(pickedword);
+            }
+            let firstword = sentencef[0];
+            firstword = capflt(firstword);
+            sentencef[0] = firstword;
+            writebitspans(ele, sentencef.join(" "), [{txts: ["def", "global", "private", "local", "static", "void", "public", "class", "struct"], classname: "rebtext"}, {txts: ["require"], classname: "blutext"}])
+        };
+        function gen(){
+            if (event.key === "Enter") {
+                console.log("it IS enter");
+                initmsg.remove();
+                let responded = response();
+                console.log(responded);
+                const usrmsg = document.createElement("p");
+                usrmsg.style.color = "white";
+                usrmsg.style.fontFamily = "system-ui";
+                usrmsg.style.textAlign = "right";
+                usrmsg.textContent = inputbar.value;
+                const botmsg = document.createElement("p");
+                botmsg.style.color = "white";
+                botmsg.style.fontFamily = "system-ui";
+                botmsg.style.textAlign = "left";
+                body.insertBefore(usrmsg, inputbar);
+                body.insertBefore(botmsg, inputbar);
+                if (inputbar.value.match("code") || inputbar.value.match("java") || inputbar.value.match("lua") || inputbar.value.match("js") || inputbar.value.match("programming")) {
+                    const parentesque = document.createElement("div");
+                    const codeblock = document.createElement("p")
+                    const langlabel = document.createElement("p")
+                    langlabel.style.color = "rgb(150,150,150)";
+                    langlabel.textContent = "Bython"
+                    langlabel.style.fontSize = "12px";
+                    langlabel.style.fontFamily = "system-ui";
+                    parentesque.append(langlabel)
+                    parentesque.append(codeblock)
+                    codeblock.style.color = "white";
+                    parentesque.style.background = "rgb(30,30,30)";
+                    parentesque.style.borderRadius = "16px";
+                    parentesque.style.padding = "16px";
+                    parentesque.style.paddingTop = "5px";
+                    codeblock.style.textWrap = "true";
+                    codeblock.style.fontFamily = "system-ui";
+                    codeblock.style.maxWidth = "560px";
+                    body.insertBefore(parentesque, inputbar);
+                    codegen(codeblock)
+                }
+                inputbar.value = "";
+                setTimeout(writebit(botmsg, responded), 100);
+            }
+        }
+    </script>
+</html>
