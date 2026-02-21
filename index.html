@@ -1,33 +1,87 @@
 <!DOCTYPE html>
     <body id="body">
+        <div class="topbar">
+            <h class="toph">Model: 1-o</h>
+            <h class="toph">Plan: FREE</h>
+        </div>
+        <hr/>
         <h id="initmsg"><b>Not</b> ready when you are.</h>
         <input onkeydown="gen()" type="text" placeholder="Talk to me, now." id="promptbar"/>
-        <p style="font-family: system-ui; text-align: center; color: rgb(100, 100, 100); font-size: 13px;">ClosedPI© 2027 | THIS IS NOT A REAL AI CHATBOT.</p>
+        <p style="font-family: system-ui; text-align: center; color: rgb(100, 100, 100); font-size: 13px;">ClosedPI© 2027</p>
     </body>
     <style>
         body {
-            padding: 100px;
-            padding-top: 340px;
-            display: grid;
-            justify-content:center;
-            background: rgb(49, 49, 49);
+            padding: 0;
+            padding-top: 10px;
+            display:grid;
+            margin: 0;
+            flex-direction: column;
+            justify-content: center;
+            background: rgb(26, 26, 26);
+        }
+        hr {
+            height: 340px;
+            color: rgba(0,0,0,0);
         }
         input {
             font-family: system-ui;
             padding: 10px;
-            border-radius: 16px;
+            border-radius: 90px;
+            outline: 0;
             border-width: 1px;
             margin-top: 20px;
-            height: 50px;
+            height: 30px;
+            transition: border-radius 1s, background-color 1s, box-shadow 1s, border-color 1s;
+            
             color: white;
             width: 600px;
             border-style: solid;
-            background-color: rgb(71, 71, 71);
-            border-color: rgb(95, 95, 95);
+            box-shadow: 0px 0px 0px 0px rgb(88, 88, 88);
+            background-color: rgba(51, 51, 51);
+            border-color: rgba(95, 95, 95);
+        }
+        input:hover {
+            background-color: rgb(61, 61, 61);
+            border-color: rgb(138, 138, 138);
+        }
+        input:focus {
+            background-color: rgb(61, 61, 61);
+            border-color: rgb(255, 255, 255);
+            box-shadow: 0px 0px 20px 0px rgb(255, 255, 255);
+        }
+        input::grammar-error {
+            border-color: rgb(255, 61, 103);
+            box-shadow: 0px 0px 10px 5px rgb(255, 42, 70);
         }
         h {
             color: white;
             text-align: center;
+            font-family: system-ui;
+        }
+        .topbar {
+            justify-self: center;
+            display:flex;
+            gap: 20px;
+            color: white;
+            border-radius: 90px;
+            height: 40px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.021);
+            width: 100%;
+            font-family: system-ui;
+        }
+        .toph {
+            justify-self: center;
+            color: white;
+            line-height: 30px;
+            border-radius: 90px;
+            height: 30px;
+            padding-left: 35px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-right: 35px;
+            background-color: rgba(255, 255, 255, 0);
+            width: 100%;
             font-family: system-ui;
         }
         .rebtext {
@@ -52,8 +106,6 @@
         "are",
         "you",
         "me",
-        "that",
-        "this",
         "he",
         "him",
         "she",
@@ -79,8 +131,6 @@
         "sentence",
         "amazing",
         "nice",
-        "then",
-        "has",
         "your",
         "list",
         "bug",
@@ -144,6 +194,7 @@
         "table",
         "joystick",
         "nominate",
+        "—",
         "seed",
         "specimen",
         "well",
@@ -151,6 +202,19 @@
         "reward",
         "training"
         ];
+        const objects = [
+            "plant",
+            "house",
+            "person",
+            "thing"
+        ]
+        const refers = [
+            "this",
+            "that",
+            "is",
+            "an",
+            "a"
+        ]  
         const codepossibility = [
             "local",
             "global",
@@ -202,13 +266,20 @@
         function capflt(val) {
             return String(val).charAt(0).toUpperCase() + String(val).slice(1);
         };
-
         function response(){
             const wordmount = Math.floor(Math.random() * 10);
             let sentencef = []
             for (let i = 0; i < wordmount; i++) {
                 const numbword = Math.floor(Math.random()*possibility.length);
                 const pickedword = possibility[numbword];
+                const prob = ranint(100);
+                console.log(prob)
+                if (prob > 50) {
+                    console.log("wow")
+                    const numberedre = Math.floor(Math.random()*refers.length);
+                    const actualchosenword = refers[numberedre];
+                    sentencef.push(actualchosenword);
+                }
                 sentencef.push(pickedword);
             }
             let firstword = sentencef[0];
