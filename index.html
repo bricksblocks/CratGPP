@@ -1,11 +1,11 @@
 <!DOCTYPE html>
     <head>
-        <title>CratGPP</title>
+        <title>CratGPP - 2-o</title>
     </head>
     <body id="body">
         <div class="topbar">
-            <h class="toph">Model: 1-o</h>
-            <h class="toph">Plan: FREE</h>
+            <h class="toph">Model: 2-o</h>
+            <h class="toph">Plan: CRACKED</h>
         </div>
         <hr/>
         <h id="initmsg"><b>Not</b> ready when you are.</h>
@@ -72,6 +72,9 @@
             background-color: rgba(255, 255, 255, 0.021);
             width: 100%;
             font-family: system-ui;
+        }
+        #initmsg {
+            font-size: 20px;
         }
         .toph {
             justify-self: center;
@@ -198,6 +201,18 @@
         "joystick",
         "nominate",
         "—",
+        "—",
+        "—",
+        "—","—",
+        "—",
+        "—",
+        "—","—",
+        "—",
+        "—", /*ignore this its so it uses the dash more*/
+        "—","—",
+        "—",
+        "—",
+        "—",
         "seed",
         "specimen",
         "well",
@@ -295,11 +310,28 @@
         }
         async function writebit(ele, sent){
             for (let i = 0; i <= sent.length; i++) {
-                const charat = sent.charAt(i);
-                ele.textContent = ele.textContent.concat(charat);
-                await new Promise(resolve => setTimeout(resolve, 20));;
+                const charat = sent.split(" ")[i];
+                const spn = document.createElement("span")
+                if (charat === undefined) {
+                    return
+                }
+                let boldify = false
+                const probtoboldify = ranint(100)
+                if (probtoboldify > 70) {
+                    boldify = true
+                }
+                if (boldify) {
+                    ele.innerHTML = ele.innerHTML.concat(" <b>"+charat+"</b>");
+                } else {
+                    ele.innerHTML = ele.innerHTML.concat(" "+charat);
+                }
+                await new Promise(resolve => setTimeout(resolve, 50));;
             }
-        };     
+        };   /*
+        writebit does basically the same thing as writebitspans lol,
+        except syntax highlighting.
+        that's exclusive to writebitspans (writebit also does occasional text boldifying, its only used for text gen)
+        */  
         async function writebitspans(ele, sent, tabele){
             for (let i = 0; i <= sent.length; i++) {
                 const charat = sent.split(" ")[i]
@@ -335,9 +367,10 @@
             firstword = capflt(firstword);
             sentencef[0] = firstword;
             writebitspans(ele, sentencef.join(" "), [{txts: ["def", "global", "private", "local", "static", "void", "public", "class", "struct"], classname: "rebtext"}, {txts: ["require"], classname: "blutext"}])
-        };
+        }; /* codegen does the code n stuff... uses writebitspans */
         function gen(){
             if (event.key === "Enter") {
+                /*and this i s where the magic happens, actual  input an stuff*/
                 console.log("it IS enter");
                 initmsg.remove();
                 let responded = response();
