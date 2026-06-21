@@ -4,8 +4,8 @@
     </head>
     <body id="body">
         <div class="topbar">
-            <h class="toph">Model: 2-o</h>
-            <h class="toph">Plan: CRACKED</h>
+            <h class="toph">Model: 2.1-o</h>
+            <h class="toph">Plan: Free</h>
         </div>
         <hr/>
         <h id="initmsg"><b>Not</b> ready when you are.</h>
@@ -20,37 +20,36 @@
             margin: 0;
             flex-direction: column;
             justify-content: center;
-            background: rgb(26, 26, 26);
+            background: rgb(46, 39, 49);
         }
         hr {
+            border: 0;
+            outline: 0;
             height: 340px;
             color: rgba(0,0,0,0);
         }
         input {
             font-family: system-ui;
             padding: 10px;
-            border-radius: 90px;
+            border-radius: 4px;
             outline: 0;
             border-width: 1px;
             margin-top: 20px;
-            height: 30px;
+            height: 15px;
             transition: border-radius 1s, background-color 1s, box-shadow 1s, border-color 1s;
-            
             color: white;
-            width: 600px;
+            width: 500px;
             border-style: solid;
-            box-shadow: 0px 0px 0px 0px rgb(88, 88, 88);
-            background-color: rgba(51, 51, 51);
-            border-color: rgba(95, 95, 95);
+            background-color: rgb(49, 45, 53);
+            border-color: rgb(102, 89, 108);
         }
         input:hover {
-            background-color: rgb(61, 61, 61);
-            border-color: rgb(138, 138, 138);
+            background-color: rgb(50, 47, 58);
+            border-color: rgb(134, 121, 139);
         }
         input:focus {
-            background-color: rgb(61, 61, 61);
+            background-color: rgb(74, 56, 70);
             border-color: rgb(255, 255, 255);
-            box-shadow: 0px 0px 20px 0px rgb(255, 255, 255);
         }
         input::grammar-error {
             border-color: rgb(255, 61, 103);
@@ -59,6 +58,7 @@
         h {
             color: white;
             text-align: center;
+            font-size: 10;
             font-family: system-ui;
         }
         .topbar {
@@ -66,29 +66,30 @@
             display:flex;
             gap: 20px;
             color: white;
-            border-radius: 90px;
-            height: 40px;
+            border-radius: 4px;
+            height: 10px;
             padding: 10px;
-            background-color: rgba(255, 255, 255, 0.021);
+            background-color: rgba(255, 255, 255, 0.018);
             width: 100%;
             font-family: system-ui;
         }
         #initmsg {
-            font-size: 20px;
+            font-size: 17px;
         }
         .toph {
             justify-self: center;
-            color: white;
-            line-height: 30px;
+            color: rgba(255, 255, 255, 0.321);
+            line-height: 0px;
             border-radius: 90px;
-            height: 30px;
+            height: 20px;
             padding-left: 35px;
             padding-top: 5px;
             padding-bottom: 5px;
             padding-right: 35px;
             background-color: rgba(255, 255, 255, 0);
             width: 100%;
-            font-family: system-ui;
+            font-weight: 100;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .rebtext {
             color: rgb(255, 110, 110);
@@ -340,7 +341,8 @@
                 }
                 let highlightclassname = "normaltext"
                 const newspan = document.createElement("span")
-                newspan.style.fontFamily = "system-ui"
+                newspan.style.fontFamily = "'Segoe UI'"
+                newspan.style.fontSize = "10"
                 let mark = false
                 for (var construct of tabele) {
                     construct.txts.forEach(element => {
@@ -378,11 +380,13 @@
                 const usrmsg = document.createElement("p");
                 usrmsg.style.color = "white";
                 usrmsg.style.fontFamily = "system-ui";
+                usrmsg.style.fontSize = "12";
                 usrmsg.style.textAlign = "right";
                 usrmsg.textContent = inputbar.value;
                 const botmsg = document.createElement("p");
                 botmsg.style.color = "white";
                 botmsg.style.fontFamily = "system-ui";
+                botmsg.style.fontSize = "14px";
                 botmsg.style.textAlign = "left";
                 body.insertBefore(usrmsg, inputbar);
                 body.insertBefore(botmsg, inputbar);
